@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'CRM API is running' });
 });
 
-// Connect to MongoDB then start server
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB connected');

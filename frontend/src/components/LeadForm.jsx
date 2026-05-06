@@ -156,7 +156,6 @@ const LeadForm = ({ initial = {}, onSubmit, onCancel }) => {
         />
       </div>
 
-      {/* Buttons */}
       <div className="flex gap-3 mt-2">
         <button
           type="submit"

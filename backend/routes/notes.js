@@ -5,7 +5,7 @@ const auth = require('../middleware/authMiddleware');
 
 router.use(auth);
 
-// GET /api/notes/:leadId
+// GET notes by leadId
 router.get('/:leadId', async (req, res) => {
   try {
     const notes = await Note.find({ lead: req.params.leadId })
@@ -16,7 +16,7 @@ router.get('/:leadId', async (req, res) => {
   }
 });
 
-// POST /api/notes/:leadId
+// POST notes by leadId
 router.post('/:leadId', async (req, res) => {
   try {
     const note = await Note.create({

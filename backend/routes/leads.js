@@ -5,7 +5,7 @@ const auth = require('../middleware/authMiddleware');
 
 router.use(auth);
 
-// GET /api/leads
+//GET /apileads
 router.get('/', async (req, res) => {
   try {
     const { status, source, salesperson, search, sort } = req.query;
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/leads/:id
+// GET leads by id
 router.get('/:id', async (req, res) => {
   try {
     const lead = await Lead.findById(req.params.id);
@@ -54,7 +54,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/leads
+// POST leads
 router.post('/', async (req, res) => {
   try {
     const lead = await Lead.create(req.body);
@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT /api/leads/:id
+// Update leads by id
 router.put('/:id', async (req, res) => {
   try {
     const existing = await Lead.findById(req.params.id);
@@ -95,7 +95,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE /api/leads/:id
+// DELETE leads by id
 router.delete('/:id', async (req, res) => {
   try {
     const lead = await Lead.findByIdAndDelete(req.params.id);

@@ -6,6 +6,7 @@ import StatusBadge from "../components/StatusBadge";
 import LeadForm from "../components/LeadForm";
 
 const Leads = () => {
+  const [salespersons, setSalespersons] = useState([]);
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -29,6 +30,13 @@ const Leads = () => {
       if (filters.sort) params.sort = filters.sort;
       const res = await getLeads(params);
       setLeads(res.data);
+
+      // Extract unique salespersons from ALL leads
+      const allRes = await getLeads({});
+      const unique = [
+        ...new Set(allRes.data.map((lead) => lead.salesperson).filter(Boolean)),
+      ];
+      setSalespersons(unique);
     } catch (err) {
       console.error(err);
     } finally {
@@ -92,7 +100,11 @@ const Leads = () => {
         )}
 
         {/* Filter Bar */}
-        <FilterBar filters={filters} setFilters={setFilters} />
+        <FilterBar
+          filters={filters}
+          setFilters={setFilters}
+          salespersons={salespersons}
+        />
 
         {/* Leads Table */}
         {loading ? (

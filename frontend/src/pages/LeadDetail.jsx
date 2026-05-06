@@ -94,7 +94,6 @@ const LeadDetail = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto">
-        {/* Back Button */}
         <button
           onClick={() => navigate("/leads")}
           className="text-indigo-600 hover:text-indigo-800 text-sm font-semibold mb-4 flex items-center gap-1"
@@ -133,7 +132,6 @@ const LeadDetail = () => {
             </div>
           </div>
 
-          {/* Lead Info */}
           {!editing ? (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
               <div>

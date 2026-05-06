@@ -1,6 +1,6 @@
 import React from "react";
 
-const FilterBar = ({ filters, setFilters }) => {
+const FilterBar = ({ filters, setFilters, salespersons = [] }) => {
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
@@ -65,6 +65,26 @@ const FilterBar = ({ filters, setFilters }) => {
           <option value="Cold Email">Cold Email</option>
           <option value="Event">Event</option>
           <option value="Other">Other</option>
+        </select>
+      </div>
+
+      {/* Salesperson */}
+      <div className="flex flex-col gap-1">
+        <label className="text-xs font-semibold text-gray-600">
+          Salesperson
+        </label>
+        <select
+          name="salesperson"
+          value={filters.salesperson}
+          onChange={handleChange}
+          className="border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <option value="">All Salespersons</option>
+          {salespersons.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
         </select>
       </div>
 
