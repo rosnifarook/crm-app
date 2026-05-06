@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLeads, createLead, deleteLead } from "../api/api";
 import FilterBar from "../components/FilterBar";
@@ -19,7 +19,7 @@ const Leads = () => {
   });
   const navigate = useNavigate();
 
-  const fetchLeads = async () => {
+  const fetchLeads = useCallback(async () => {
     try {
       setLoading(true);
       const params = {};
@@ -42,11 +42,11 @@ const Leads = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
 
   useEffect(() => {
     fetchLeads();
-  }, [filters]);
+  }, [fetchLeads]);
 
   const handleCreate = async (formData) => {
     try {

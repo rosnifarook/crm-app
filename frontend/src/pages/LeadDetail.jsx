@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   getLead,
@@ -21,7 +21,7 @@ const LeadDetail = () => {
   const [noteContent, setNoteContent] = useState("");
   const [addingNote, setAddingNote] = useState(false);
 
-  const fetchLead = async () => {
+  const fetchLead = useCallback(async () => {
     try {
       const [leadRes, notesRes] = await Promise.all([
         getLead(id),
@@ -34,11 +34,11 @@ const LeadDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchLead();
-  }, [id]);
+  }, [fetchLead]);
 
   const handleUpdate = async (formData) => {
     try {
