@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Lead = require('../models/Lead');
-const auth = require('../middleware/authMiddleware');
+const auth = require('../middleware/authmiddleware');
 
 router.use(auth);
 
